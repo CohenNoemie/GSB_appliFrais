@@ -17,28 +17,41 @@
 /**
  * Teste si un quelconque visiteur est connecté
  *
- * @return vrai ou faux si le visiteur est connecter ou pas
+ * @return vrai ou faux si l est connecter ou pas
  */
 function estConnecte()
 {
-    return isset($_SESSION['idVisiteur']);
+    return isset($_SESSION['statut']);
+}
+
+function estVisiteurConnecte(){
+    if ($statut === 'visiteur' ){
+        estConnecte();
+    }
+}
+
+function estComptableConnecte (){
+    if ($statut === 'comptable'){
+        estConnecte();
+    }
 }
 
 /**
  * Enregistre dans une variable session les infos d'un visiteur
  *
- * @param String $idVisiteur ID du visiteur
- * @param String $nom        Nom du visiteur
- * @param String $prenom     Prénom du visiteur
+ * @param String $idUtilisateur ID de l'utilisateur
+ * @param String $statut statut de l'utilisateur
+ * @param String $nom        Nom de l'utilisateur
+ * @param String $prenom     Prénom de l'utilisateur
  *
  * @return null
  */
-function connecter($idVisiteur, $nom, $prenom)
+function connecter($idUtilisateur,$statut, $nom, $prenom)
 {
-    $_SESSION['idVisiteur'] = $idVisiteur;
+    $_SESSION['idUtilisateur'] = $idUtilisateur;
+    $_SESSION['statut'] = $statut;
     $_SESSION['nom'] = $nom;
     $_SESSION['prenom'] = $prenom;
-    
 }
 
 /**

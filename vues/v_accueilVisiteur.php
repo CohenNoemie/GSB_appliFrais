@@ -14,9 +14,9 @@
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
 ?>
-<div id="accueil">
+<div id="accueilVisiteur">
     <h2>
-        Gestion des frais<small> - Visiteur : 
+        Gestion des frais<small> -visiteur : 
             <?php 
             echo $_SESSION['prenom'] . ' ' . $_SESSION['nom']
             ?></small>
