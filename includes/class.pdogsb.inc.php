@@ -93,10 +93,10 @@ class PdoGsb//pour que l'application fonctionne
     public function getInfosVisiteur($login, $mdp)
     {
         $requetePrepare = PdoGsb::$monPdo->prepare(//on enregistre tous les parametre de la requete
-            'SELECT visiteur.id AS id, visiteur.nom AS nom, '
+            'SELECT Visiteur.id AS id, Visiteur.nom AS nom, '
             . 'visiteur.prenom AS prenom '
-            . 'FROM visiteur '
-            . 'WHERE visiteur.login = :unLogin AND visiteur.mdp = :unMdp'
+            . 'FROM Visiteur '
+            . 'WHERE Visiteur.login = :unLogin AND Visiteur.mdp = :unMdp'
         );
         $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
         $requetePrepare->bindParam(':unMdp', $mdp, PDO::PARAM_STR);
@@ -115,10 +115,10 @@ class PdoGsb//pour que l'application fonctionne
     public function getInfosComptable($login, $mdp)
     {
         $requetePrepare = PdoGsb::$monPdo->prepare(//on enregistre tous les parametre de la requete
-            'SELECT comptable.id AS id, comptable.nom AS nom, '
-            . 'comptable.prenom AS prenom '
-            . 'FROM comptable '
-            . 'WHERE comptable.login = :unLogin AND comptable.mdp = :unMdp'
+            'SELECT Comptable.id AS id, Comptable.nom AS nom, '
+            . 'Comptable.prenom AS prenom '
+            . 'FROM Comptable '
+            . 'WHERE Comptable.login = :unLogin AND Comptable.mdp = :unMdp'
         );
         $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
         $requetePrepare->bindParam(':unMdp', $mdp, PDO::PARAM_STR);
@@ -132,20 +132,20 @@ class PdoGsb//pour que l'application fonctionne
      * La boucle foreach ne peut être utilisée ici car on procède
      * à une modification de la structure itérée - transformation du champ date-
      *
-     * @param String $idComptable ID du Comptable
+     * @param String $idVisiteur ID du Visiteur
      * @param String $mois       Mois sous la forme aaaamm
      *
      * @return tous les champs des lignes de frais hors forfait sous la forme
      * d'un tableau associatif
      */
-    public function getLesFraisHorsForfait($idComptable, $mois)
+    public function getLesFraisHorsForfait($idVisiteur, $mois)
     {
         $requetePrepare = PdoGsb::$monPdo->prepare(
             'SELECT * FROM lignefraishorsforfait '
-            . 'WHERE lignefraishorsforfait.idComptable = :unidComptable '
+            . 'WHERE lignefraishorsforfait.idVisiteur = :unid$idVisiteur '
             . 'AND lignefraishorsforfait.mois = :unMois'
         );
-        $requetePrepare->bindParam(':unidComptable', $idComptable, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unidVisiteur', $idVisiteur, PDO::PARAM_STR);
         $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
         $requetePrepare->execute();
         $lesLignes = $requetePrepare->fetchAll();
