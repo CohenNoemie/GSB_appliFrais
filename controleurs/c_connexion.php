@@ -26,26 +26,26 @@ case 'demandeConnexion':
 case 'valideConnexion':
     $login = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_STRING);
     $mdp = filter_input(INPUT_POST, 'mdp', FILTER_SANITIZE_STRING);
-    $Visiteur = $pdo->getInfosVisiteur($login, $mdp);
-    $Comptable = $pdo->getInfosComptable($login, $mdp);
-    if (!is_array($Visiteur)&&!is_array ($Comptable)) {
+    $visiteur = $pdo->getInfosVisiteur($login, $mdp);
+    $comptable = $pdo->getInfosComptable($login, $mdp);
+    if (!is_array($visiteur)&&!is_array ($comptable)) {
         ajouterErreur('Login ou mot de passe incorrect');
         include 'vues/v_erreurs.php';
         include 'vues/v_connexion.php';
     } else {
-        if (is_array($Visiteur)){
+        if (is_array($visiteur)){
         
-        $id = $Visiteur['id'];
-        $nom = $Visiteur['nom'];
-        $prenom = $Visiteur['prenom'];
-        $statut= 'Visiteur';
+        $id = $visiteur['id'];
+        $nom = $visiteur['nom'];
+        $prenom = $visiteur['prenom'];
+        $statut= 'visiteur';
          
-    } elseif(is_array($Comptable)) {
+    } elseif(is_array($comptable)) {
  
-        $id = $Comptable['id'];
-        $nom = $Comptable['nom'];
-        $prenom = $Comptable['prenom'];
-        $statut= 'Comptable';
+        $id = $comptable['id'];
+        $nom = $comptable['nom'];
+        $prenom = $comptable['prenom'];
+        $statut= 'comptable';
         
     }
     connecter($idUtilisateur,$statut, $nom, $prenom);

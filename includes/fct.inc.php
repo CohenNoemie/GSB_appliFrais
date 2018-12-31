@@ -32,7 +32,7 @@ function estConnecte()
 function estVisiteurConnecte()
 {
     if(estConnecte()){
-   return($_SESSION['statut']='Visiteur');
+   return($_SESSION['statut']='visiteur');
     } 
    }
 
@@ -44,7 +44,7 @@ function estVisiteurConnecte()
 function estComptableConnecte()
    {
     if(estConnecte()){
-   return($_SESSION['statut']='Comptable');
+   return($_SESSION['statut']='comptable');
     } 
    }
 
