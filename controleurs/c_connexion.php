@@ -48,7 +48,7 @@ case 'valideConnexion':
         $statut= 'comptable';
         
     }
-    connecter($idUtilisateur,$statut, $nom, $prenom);
+    connecter($id,$nom,$prenom,$statut);
     header('Location: index.php');
  }
 

@@ -16,7 +16,7 @@
 ?>
 <div id="accueilComptable">
     <h2>
-        <small> -comptable: 
+        <small> -Comptable: 
             <?php 
             echo $_SESSION['prenom'] . ' ' . $_SESSION['nom']
             ?></small>

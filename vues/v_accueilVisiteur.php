@@ -16,7 +16,7 @@
 ?>
 <div id="accueilVisiteur">
     <h2>
-        Gestion des frais<small> -visiteur : 
+        Gestion des frais<small> -Visiteur : 
             <?php 
             echo $_SESSION['prenom'] . ' ' . $_SESSION['nom']
             ?></small>
