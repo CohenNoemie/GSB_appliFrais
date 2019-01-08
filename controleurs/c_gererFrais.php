@@ -6,15 +6,9 @@
  *
  * @category  PPE
  * @package   GSB
- * @author    Réseau CERTA <contact@reseaucerta.org>
- * @author    José GIL <jgil@ac-nice.fr>
- * @copyright 2017 Réseau CERTA
- * @license   Réseau CERTA
- * @version   GIT: <0>
- * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
 
-$idVisiteur = $_SESSION['idVisiteur'];
+$idVisiteur = $_SESSION['idUtilisateur'];
 $mois = getMois(date('d/m/Y'));
 $numAnnee = substr($mois, 0, 4);
 $numMois = substr($mois, 4, 2);
@@ -26,7 +20,7 @@ case 'saisirFrais':
     }
     break;
 case 'validerMajFraisForfait':
-    $lesFrais = filter_input(INPUT_POST, 'lesFrais', FILTER_SANITIZE_STRING);
+    $lesFrais = filter_input(INPUT_POST, 'lesFrais', FILTER_DEFAULT ,FILTER_FORCE_ARRAY);
     if (lesQteFraisValides($lesFrais)) {
         $pdo->majFraisForfait($idVisiteur, $mois, $lesFrais);
     } else {
